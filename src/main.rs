@@ -1,4 +1,5 @@
 use clap::{arg, Parser};
+use image::ImageFormat;
 use std::fs::{self, DirEntry};
 use std::path::Path;
 
@@ -49,13 +50,13 @@ fn main() {
 
     let src_dir = fs::read_dir(&args.src_path).expect("reading src_dir succeeds");
 
-    let files: Vec<DirEntry> = src_dir
+    let img_files: Vec<DirEntry> = src_dir
         .filter_map(Result::ok)
-        .filter(|entry| match entry.file_type() {
-            Ok(file_type) => file_type.is_file(),
-            _ => false,
-        })
+        .filter(|entry| ImageFormat::from_path(entry.path().as_path()).is_ok())
         .collect();
 
-    assert!(!files.is_empty(), "src_path folder is empty");
+    assert!(
+        !img_files.is_empty(),
+        "src_path folder does not have image files"
+    );
 }
