@@ -13,3 +13,8 @@ Options:
   -h, --help                  Print help
   -V, --version               Print version
 ```
+
+### TODO
+
+- [ ] optimize performance (reading is slow)
+- [ ] add suffix argument (e.g. --suffix=cropped -> img_cropped.png)
