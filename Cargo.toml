@@ -1,5 +1,5 @@
 [package]
-name = "pic-cut"
+name = "crop-img"
 version = "0.1.0"
 edition = "2024"
 
