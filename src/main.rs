@@ -4,17 +4,35 @@ use std::fs::{self, DirEntry};
 use std::path::Path;
 
 #[derive(Parser)]
-#[command(name = "Crop Img")]
+#[command(name = "crop-img")]
 #[command(version = "0.1")]
-#[command(about = "Crops imgs", long_about = None)]
+#[command(about = "CLI tool that crops a batch of images", long_about = None)]
 struct Args {
-    #[arg(long = "src", short = 's', required = true)]
+    #[arg(
+        long = "src",
+        short = 's',
+        required = true,
+        help = "folder with images to crop"
+    )]
     src_path: String,
-    #[arg(long = "dest", short = 'd', required = true)]
+    #[arg(
+        long = "dest",
+        short = 'd',
+        required = true,
+        help = "folder where cropped images will be written into"
+    )]
     dest_path: String,
-    #[arg(long = "dest_format", default_value = "png")]
+    #[arg(
+        long = "dest_format",
+        default_value = "png",
+        help = "image format/extension"
+    )]
     format: String,
-    #[arg(long = "dest_size", default_value_t = 64)]
+    #[arg(
+        long = "dest_size",
+        default_value_t = 64,
+        help = "image rectangular crop size in pixels"
+    )]
     size: u32,
 }
 
